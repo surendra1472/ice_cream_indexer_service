@@ -1,0 +1,6 @@
+{
+  "something_went_wrong": "Something went wrong",
+  "internal_server_error": "Internal server error",
+  "indexed_successfully" : "indexed successfully",
+  "invalid_request_params": "Invalid Request Params"
+}

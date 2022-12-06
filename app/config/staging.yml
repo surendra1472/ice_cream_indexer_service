@@ -1,0 +1,9 @@
+server:
+  port: ":5030"
+
+elasticsearch:
+  url: "http://127.0.0.1:9200"
+  indices:
+    icecreamindex:
+      indexname: "ice_cream_indexer_dev"
+      type: "icecream"

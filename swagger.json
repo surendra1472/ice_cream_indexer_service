@@ -1,0 +1,386 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This documentation describes example APIs found under https://github.com/sunilnk17/ic-indexer-service",
+    "title": "Icecream Indexer Service to ElasticSearch",
+    "contact": {
+      "name": "Sunil NK",
+      "email": "sunilnk95@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "basePath": "/api/v1",
+  "paths": {
+    "/icecream": {
+      "get": {
+        "description": "Get Icecream",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "summary": "Get Icecream",
+        "operationId": "getIcecream",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "name of icecream",
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "genericModel",
+            "schema": {
+              "$ref": "#/definitions/genericModel"
+            }
+          },
+          "default": {
+            "description": "genericError",
+            "schema": {
+              "$ref": "#/definitions/genericError"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "SaveOrUpdate an Icecream",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "summary": "SaveOrUpdate an Icecream",
+        "operationId": "SaveOrUpdateIcecream",
+        "parameters": [
+          {
+            "description": "icecream request",
+            "name": "icecreamClientRequest",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/icecreamClientRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "genericModel",
+            "schema": {
+              "$ref": "#/definitions/genericModel"
+            }
+          },
+          "default": {
+            "description": "genericError",
+            "schema": {
+              "$ref": "#/definitions/genericError"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete Icecream",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "schemes": [
+          "http"
+        ],
+        "summary": "Delete Icecream",
+        "operationId": "deleteIcecream",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Product id",
+            "name": "product_id",
+            "in": "query",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "genericModel",
+            "schema": {
+              "$ref": "#/definitions/genericModel"
+            }
+          },
+          "default": {
+            "description": "genericError",
+            "schema": {
+              "$ref": "#/definitions/genericError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CusArrayString": {
+      "type": "object",
+      "properties": {
+        "Set": {
+          "type": "boolean"
+        },
+        "Value": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "CusInt64": {
+      "type": "object",
+      "properties": {
+        "Set": {
+          "type": "boolean"
+        },
+        "Value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "CusString": {
+      "type": "object",
+      "properties": {
+        "Set": {
+          "type": "boolean"
+        },
+        "Value": {
+          "type": "string"
+        }
+      },
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "CusTime": {
+      "type": "object",
+      "properties": {
+        "Set": {
+          "type": "boolean"
+        },
+        "Value": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "IcecreamGenericResponse": {
+      "description": "Icecream Generic Response",
+      "type": "object",
+      "properties": {
+        "Body": {
+          "$ref": "#/definitions/genericModel"
+        }
+      },
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "IcecreamIndexRequest": {
+      "type": "object",
+      "properties": {
+        "allergy_info": {
+          "$ref": "#/definitions/CusString"
+        },
+        "description": {
+          "$ref": "#/definitions/CusString"
+        },
+        "dietary_certifications": {
+          "$ref": "#/definitions/CusString"
+        },
+        "id": {
+          "$ref": "#/definitions/CusInt64"
+        },
+        "image_closed": {
+          "$ref": "#/definitions/CusString"
+        },
+        "image_open": {
+          "$ref": "#/definitions/CusString"
+        },
+        "ingredients": {
+          "$ref": "#/definitions/CusArrayString"
+        },
+        "name": {
+          "$ref": "#/definitions/CusString"
+        },
+        "product_id": {
+          "$ref": "#/definitions/CusString"
+        },
+        "sourcing_values": {
+          "$ref": "#/definitions/CusArrayString"
+        },
+        "story": {
+          "$ref": "#/definitions/CusString"
+        }
+      },
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "genericError": {
+      "description": "Icecream Generic Error",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "error": {
+          "type": "string",
+          "x-go-name": "Error"
+        },
+        "request_id": {
+          "type": "string",
+          "x-go-name": "RequestId"
+        }
+      },
+      "x-go-name": "GenericError",
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "genericModel": {
+      "description": "Icecream Generic Model",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Code"
+        },
+        "data": {
+          "type": "string",
+          "x-go-name": "Data"
+        },
+        "error": {
+          "type": "string",
+          "x-go-name": "Error"
+        },
+        "request_id": {
+          "type": "string",
+          "x-go-name": "RequestId"
+        }
+      },
+      "x-go-name": "GenericModel",
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "icecreamClientRequest": {
+      "description": "SaveOrUpdate icecream Request",
+      "type": "object",
+      "properties": {
+        "allergy_info": {
+          "type": "string",
+          "x-go-name": "AllergyInfo"
+        },
+        "description": {
+          "type": "string",
+          "x-go-name": "Description"
+        },
+        "dietary_certifications": {
+          "type": "string",
+          "x-go-name": "DietaryCertifications"
+        },
+        "id": {
+          "description": "an icecream request\nin: body",
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Id"
+        },
+        "image_closed": {
+          "type": "string",
+          "x-go-name": "ImageClosed"
+        },
+        "image_open": {
+          "type": "string",
+          "x-go-name": "ImageOpen"
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "Ingredients"
+        },
+        "is_Deleted": {
+          "type": "boolean",
+          "x-go-name": "IsDeleted"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "product_id": {
+          "type": "string",
+          "x-go-name": "ProductId"
+        },
+        "sourcing_values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-go-name": "SourcingValues"
+        },
+        "story": {
+          "type": "string",
+          "x-go-name": "Story"
+        }
+      },
+      "x-go-name": "IcecreamClientRequest",
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "icecreamDeleteRequest": {
+      "description": "Delete icecream Request",
+      "type": "object",
+      "properties": {
+        "ProductId": {
+          "description": "a icecream delete request\nin: body",
+          "type": "string"
+        }
+      },
+      "x-go-name": "IcecreamDelete",
+      "x-go-package": "ic-indexer-service/app/model/request"
+    },
+    "icecreamRequest": {
+      "description": "Get icecream Request",
+      "type": "object",
+      "properties": {
+        "Id": {
+          "description": "a icecream request\nin: body",
+          "type": "integer",
+          "format": "int64"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "ProductId": {
+          "type": "string"
+        }
+      },
+      "x-go-name": "IcecreamFilter",
+      "x-go-package": "ic-indexer-service/app/model/request"
+    }
+  },
+  "responses": {
+    "genericResponse": {
+      "description": "Icecream Generic Response",
+      "schema": {
+        "$ref": "#/definitions/genericModel"
+      }
+    }
+  }
+}
